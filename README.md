@@ -60,7 +60,7 @@ An enterprise-grade AI project portfolio management dashboard that empowers orga
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ai-project-dashboard.git
+git clone https://github.com/onurcandonmezer/ai-project-dashboard.git
 cd ai-project-dashboard
 
 # Create virtual environment and install
