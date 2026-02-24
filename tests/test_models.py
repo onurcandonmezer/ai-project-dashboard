@@ -4,7 +4,6 @@ from datetime import date
 
 import pytest
 from pydantic import ValidationError
-
 from src.models import (
     AIProject,
     BudgetCategory,
@@ -13,10 +12,8 @@ from src.models import (
     ProjectKPI,
     ProjectStatus,
     RiskEntry,
-    RiskStatus,
     Trend,
 )
-
 
 # ── AIProject Tests ───────────────────────────────────────────
 

@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from datetime import date
 from enum import StrEnum
-from typing import Optional
 from uuid import uuid4
 
 from pydantic import BaseModel, Field, computed_field, model_validator
@@ -78,7 +77,7 @@ class AIProject(BaseModel):
     priority: Priority = Field(default=Priority.MEDIUM, description="Priority level")
     owner: str = Field(..., min_length=1, max_length=100, description="Project owner")
     start_date: date = Field(..., description="Project start date")
-    target_date: Optional[date] = Field(default=None, description="Target completion date")
+    target_date: date | None = Field(default=None, description="Target completion date")
     model_used: str = Field(default="", max_length=200, description="AI model being used")
     use_case: str = Field(default="", max_length=500, description="Primary use case")
     department: str = Field(default="", max_length=100, description="Owning department")
@@ -102,7 +101,7 @@ class AIProject(BaseModel):
 
     @computed_field
     @property
-    def days_until_target(self) -> Optional[int]:
+    def days_until_target(self) -> int | None:
         """Days remaining until target date, or None if no target set."""
         if self.target_date is None:
             return None

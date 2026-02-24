@@ -6,11 +6,9 @@ for projects, KPIs, budgets, and risks.
 
 from __future__ import annotations
 
-import json
 import sqlite3
 from datetime import date
 from pathlib import Path
-from typing import Optional
 
 import yaml
 
@@ -36,7 +34,7 @@ class ProjectDatabase:
 
     def __init__(self, db_path: str = "ai_projects.db") -> None:
         self.db_path = db_path
-        self._connection: Optional[sqlite3.Connection] = None
+        self._connection: sqlite3.Connection | None = None
         self._initialize_tables()
 
     @property
@@ -133,7 +131,7 @@ class ProjectDatabase:
         self.connection.commit()
         return project
 
-    def get_project(self, project_id: str) -> Optional[AIProject]:
+    def get_project(self, project_id: str) -> AIProject | None:
         """Retrieve a project by its ID."""
         row = self.connection.execute(
             "SELECT * FROM projects WHERE id = ?", (project_id,)
@@ -144,9 +142,7 @@ class ProjectDatabase:
 
     def get_all_projects(self) -> list[AIProject]:
         """Retrieve all projects."""
-        rows = self.connection.execute(
-            "SELECT * FROM projects ORDER BY start_date DESC"
-        ).fetchall()
+        rows = self.connection.execute("SELECT * FROM projects ORDER BY start_date DESC").fetchall()
         return [self._row_to_project(row) for row in rows]
 
     def update_project(self, project: AIProject) -> AIProject:
@@ -175,9 +171,7 @@ class ProjectDatabase:
 
     def delete_project(self, project_id: str) -> bool:
         """Delete a project and all associated data."""
-        cursor = self.connection.execute(
-            "DELETE FROM projects WHERE id = ?", (project_id,)
-        )
+        cursor = self.connection.execute("DELETE FROM projects WHERE id = ?", (project_id,))
         self.connection.commit()
         return cursor.rowcount > 0
 

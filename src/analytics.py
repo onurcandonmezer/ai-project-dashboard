@@ -18,7 +18,6 @@ from src.models import (
     ProjectStatus,
     RiskEntry,
     RiskStatus,
-    Trend,
 )
 
 
@@ -359,9 +358,13 @@ class ExecutiveSummaryGenerator:
     def _overview_section(projects: list[AIProject], health: HealthScore) -> str:
         total = len(projects)
         active = sum(1 for p in projects if p.is_active)
-        label = "Excellent" if health.overall_score >= 80 else (
-            "Good" if health.overall_score >= 60 else (
-                "Fair" if health.overall_score >= 40 else "Needs Attention"
+        label = (
+            "Excellent"
+            if health.overall_score >= 80
+            else (
+                "Good"
+                if health.overall_score >= 60
+                else ("Fair" if health.overall_score >= 40 else "Needs Attention")
             )
         )
         return (
@@ -421,9 +424,9 @@ class ExecutiveSummaryGenerator:
         underperforming = TrendAnalyzer.get_underperforming_kpis(kpis)
 
         lines = [
-            f"## KPI Performance\n",
+            "## KPI Performance\n",
             f"- **Total KPIs tracked**: {len(kpis)}",
-            f"- **On target**: {on_target}/{len(kpis)} ({on_target/len(kpis)*100:.0f}%)",
+            f"- **On target**: {on_target}/{len(kpis)} ({on_target / len(kpis) * 100:.0f}%)",
             f"- **Average achievement**: {avg_achievement:.1f}%",
             f"- **Trends**: {trends.get('up', 0)} improving, "
             f"{trends.get('stable', 0)} stable, "
@@ -446,7 +449,7 @@ class ExecutiveSummaryGenerator:
         critical_risks = [r for r in open_risks if r.risk_level == "critical"]
 
         lines = [
-            f"## Risk Profile\n",
+            "## Risk Profile\n",
             f"- **Open risks**: {len(open_risks)}",
             f"- **Being mitigated**: {len(mitigating)}",
             f"- **Resolved**: {len(resolved)}",

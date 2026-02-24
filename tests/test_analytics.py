@@ -5,7 +5,6 @@ from __future__ import annotations
 from datetime import date
 
 import pytest
-
 from src.analytics import (
     ExecutiveSummaryGenerator,
     PortfolioHealthScore,
@@ -23,7 +22,6 @@ from src.models import (
     RiskStatus,
     Trend,
 )
-
 
 # ── Fixtures ──────────────────────────────────────────────────
 

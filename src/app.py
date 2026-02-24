@@ -17,7 +17,6 @@ import streamlit as st
 from src.analytics import (
     ExecutiveSummaryGenerator,
     PortfolioHealthScore,
-    ROICalculator,
     TrendAnalyzer,
 )
 from src.database import ProjectDatabase

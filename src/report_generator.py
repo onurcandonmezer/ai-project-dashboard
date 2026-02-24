@@ -7,14 +7,10 @@ budget variance, risk register, and executive summaries.
 from __future__ import annotations
 
 from datetime import date, datetime
-from statistics import mean
 
 from src.analytics import (
     ExecutiveSummaryGenerator,
-    HealthScore,
     PortfolioHealthScore,
-    ROICalculator,
-    TrendAnalyzer,
 )
 from src.models import (
     AIProject,
@@ -47,11 +43,11 @@ class ReportGenerator:
         """
         health = PortfolioHealthScore.compute(projects, risks, budgets, kpis)
         lines = [
-            f"# AI Portfolio Overview Report",
+            "# AI Portfolio Overview Report",
             f"_Generated: {datetime.now().strftime('%Y-%m-%d %H:%M')}_\n",
             f"## Health Score: {health.overall_score}/100\n",
-            f"| Component | Score |",
-            f"|-----------|-------|",
+            "| Component | Score |",
+            "|-----------|-------|",
             f"| Status Distribution | {health.status_score} |",
             f"| Risk Profile | {health.risk_score} |",
             f"| Budget Adherence | {health.budget_score} |",
@@ -75,15 +71,17 @@ class ReportGenerator:
         total_actual = sum(b.actual_amount for b in budgets)
         open_risks = sum(1 for r in risks if r.status != RiskStatus.RESOLVED)
 
-        lines.extend([
-            "",
-            "## Quick Stats\n",
-            f"- **Total Projects**: {len(projects)}",
-            f"- **Active Projects**: {sum(1 for p in projects if p.is_active)}",
-            f"- **Total Budget**: ${total_planned:,.2f} planned / ${total_actual:,.2f} actual",
-            f"- **Open Risks**: {open_risks}",
-            f"- **KPIs Tracked**: {len(kpis)}",
-        ])
+        lines.extend(
+            [
+                "",
+                "## Quick Stats\n",
+                f"- **Total Projects**: {len(projects)}",
+                f"- **Active Projects**: {sum(1 for p in projects if p.is_active)}",
+                f"- **Total Budget**: ${total_planned:,.2f} planned / ${total_actual:,.2f} actual",
+                f"- **Open Risks**: {open_risks}",
+                f"- **KPIs Tracked**: {len(kpis)}",
+            ]
+        )
 
         return "\n".join(lines)
 
@@ -107,15 +105,17 @@ class ReportGenerator:
         total_actual = sum(b.actual_amount for b in budgets)
         total_variance = total_actual - total_planned
 
-        lines.extend([
-            "## Overall Summary\n",
-            f"| Metric | Amount |",
-            f"|--------|--------|",
-            f"| Total Planned | ${total_planned:,.2f} |",
-            f"| Total Actual | ${total_actual:,.2f} |",
-            f"| Variance | ${total_variance:+,.2f} |",
-            "",
-        ])
+        lines.extend(
+            [
+                "## Overall Summary\n",
+                "| Metric | Amount |",
+                "|--------|--------|",
+                f"| Total Planned | ${total_planned:,.2f} |",
+                f"| Total Actual | ${total_actual:,.2f} |",
+                f"| Variance | ${total_variance:+,.2f} |",
+                "",
+            ]
+        )
 
         # By project
         lines.append("## By Project\n")
@@ -134,8 +134,7 @@ class ReportGenerator:
             status = "Over" if p_var > 0 else ("Under" if p_var < 0 else "On Track")
             name = project_map.get(pid, pid)
             lines.append(
-                f"| {name} | ${p_planned:,.2f} | ${p_actual:,.2f} | "
-                f"${p_var:+,.2f} | {status} |"
+                f"| {name} | ${p_planned:,.2f} | ${p_actual:,.2f} | ${p_var:+,.2f} | {status} |"
             )
 
         # By category
@@ -178,30 +177,31 @@ class ReportGenerator:
         mitigating_count = sum(1 for r in risks if r.status == RiskStatus.MITIGATING)
         resolved_count = sum(1 for r in risks if r.status == RiskStatus.RESOLVED)
 
-        lines.extend([
-            "## Summary\n",
-            f"- **Total Risks**: {len(risks)}",
-            f"- **Open**: {open_count}",
-            f"- **Mitigating**: {mitigating_count}",
-            f"- **Resolved**: {resolved_count}",
-            "",
-        ])
+        lines.extend(
+            [
+                "## Summary\n",
+                f"- **Total Risks**: {len(risks)}",
+                f"- **Open**: {open_count}",
+                f"- **Mitigating**: {mitigating_count}",
+                f"- **Resolved**: {resolved_count}",
+                "",
+            ]
+        )
 
         # Risk matrix
-        lines.extend([
-            "## Risk Matrix (Probability x Impact)\n",
-            "| | Impact 1 | Impact 2 | Impact 3 | Impact 4 | Impact 5 |",
-            "|---|----------|----------|----------|----------|----------|",
-        ])
+        lines.extend(
+            [
+                "## Risk Matrix (Probability x Impact)\n",
+                "| | Impact 1 | Impact 2 | Impact 3 | Impact 4 | Impact 5 |",
+                "|---|----------|----------|----------|----------|----------|",
+            ]
+        )
 
         active_risks = [r for r in risks if r.status != RiskStatus.RESOLVED]
         for prob in range(5, 0, -1):
             row = [f"**P{prob}**"]
             for imp in range(1, 6):
-                count = sum(
-                    1 for r in active_risks
-                    if r.probability == prob and r.impact == imp
-                )
+                count = sum(1 for r in active_risks if r.probability == prob and r.impact == imp)
                 row.append(str(count) if count > 0 else "-")
             lines.append("| " + " | ".join(row) + " |")
 
