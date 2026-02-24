@@ -1,0 +1,362 @@
+projects:
+  - id: "proj_chatbot_01"
+    name: "Enterprise AI Chatbot"
+    description: "GPT-4 powered customer support chatbot integrated with CRM and knowledge base. Handles tier-1 support queries with 92% accuracy."
+    status: "production"
+    priority: "critical"
+    owner: "Sarah Chen"
+    start_date: "2024-03-15"
+    target_date: "2024-09-30"
+    model_used: "GPT-4 Turbo"
+    use_case: "Customer Support Automation"
+    department: "Customer Success"
+    kpis:
+      - metric_name: "Query Resolution Rate"
+        current_value: 92.5
+        target_value: 95.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "Average Response Time"
+        current_value: 1.2
+        target_value: 2.0
+        unit: "seconds"
+        trend: "stable"
+      - metric_name: "Customer Satisfaction"
+        current_value: 4.3
+        target_value: 4.5
+        unit: "/ 5.0"
+        trend: "up"
+    budgets:
+      - category: "compute"
+        planned_amount: 15000.00
+        actual_amount: 13500.00
+      - category: "api_calls"
+        planned_amount: 25000.00
+        actual_amount: 28000.00
+      - category: "personnel"
+        planned_amount: 80000.00
+        actual_amount: 80000.00
+    risks:
+      - risk_description: "API rate limiting during peak hours causing degraded response times"
+        probability: 3
+        impact: 4
+        mitigation: "Implement request queuing and caching layer"
+        status: "mitigating"
+      - risk_description: "Model hallucination leading to incorrect customer information"
+        probability: 2
+        impact: 5
+        mitigation: "RAG pipeline with verified knowledge base, human-in-the-loop for sensitive queries"
+        status: "mitigating"
+
+  - id: "proj_recsys_02"
+    name: "Product Recommendation Engine"
+    description: "Personalized recommendation system using collaborative filtering and deep learning for e-commerce platform."
+    status: "production"
+    priority: "high"
+    owner: "Marcus Johnson"
+    start_date: "2024-01-10"
+    target_date: "2024-08-15"
+    model_used: "Custom Transformer + NCF"
+    use_case: "Product Recommendations"
+    department: "E-Commerce"
+    kpis:
+      - metric_name: "Click-Through Rate"
+        current_value: 12.8
+        target_value: 15.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "Revenue Uplift"
+        current_value: 18.5
+        target_value: 20.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "Model Latency (P99)"
+        current_value: 45.0
+        target_value: 50.0
+        unit: "ms"
+        trend: "stable"
+    budgets:
+      - category: "compute"
+        planned_amount: 30000.00
+        actual_amount: 32000.00
+      - category: "infrastructure"
+        planned_amount: 20000.00
+        actual_amount: 18500.00
+      - category: "personnel"
+        planned_amount: 120000.00
+        actual_amount: 120000.00
+    risks:
+      - risk_description: "Cold-start problem for new users reducing recommendation quality"
+        probability: 3
+        impact: 3
+        mitigation: "Hybrid approach combining content-based filtering for new users"
+        status: "mitigating"
+
+  - id: "proj_fraud_03"
+    name: "Real-time Fraud Detection"
+    description: "ML-based fraud detection system processing financial transactions in real-time with sub-100ms latency requirement."
+    status: "testing"
+    priority: "critical"
+    owner: "Amira Patel"
+    start_date: "2024-05-01"
+    target_date: "2025-02-28"
+    model_used: "XGBoost + LSTM Ensemble"
+    use_case: "Fraud Detection"
+    department: "Finance & Risk"
+    kpis:
+      - metric_name: "Fraud Detection Rate"
+        current_value: 94.2
+        target_value: 99.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "False Positive Rate"
+        current_value: 2.8
+        target_value: 1.0
+        unit: "%"
+        trend: "down"
+      - metric_name: "Processing Latency"
+        current_value: 85.0
+        target_value: 100.0
+        unit: "ms"
+        trend: "stable"
+    budgets:
+      - category: "compute"
+        planned_amount: 50000.00
+        actual_amount: 48000.00
+      - category: "infrastructure"
+        planned_amount: 35000.00
+        actual_amount: 40000.00
+      - category: "personnel"
+        planned_amount: 150000.00
+        actual_amount: 145000.00
+      - category: "other"
+        planned_amount: 10000.00
+        actual_amount: 12000.00
+    risks:
+      - risk_description: "Model drift due to evolving fraud patterns"
+        probability: 4
+        impact: 5
+        mitigation: "Automated retraining pipeline with drift detection monitoring"
+        status: "open"
+      - risk_description: "Regulatory compliance gaps with new EU AI Act requirements"
+        probability: 3
+        impact: 4
+        mitigation: "Engage legal team for compliance audit, implement explainability module"
+        status: "open"
+      - risk_description: "High false positive rate impacting legitimate customer transactions"
+        probability: 3
+        impact: 3
+        mitigation: "Multi-stage verification for flagged transactions"
+        status: "mitigating"
+
+  - id: "proj_docai_04"
+    name: "Intelligent Document Processing"
+    description: "Automated document extraction and classification system for invoice processing and contract analysis."
+    status: "development"
+    priority: "high"
+    owner: "David Kim"
+    start_date: "2024-07-01"
+    target_date: "2025-04-30"
+    model_used: "LayoutLM v3 + GPT-4 Vision"
+    use_case: "Document Processing"
+    department: "Operations"
+    kpis:
+      - metric_name: "Extraction Accuracy"
+        current_value: 87.0
+        target_value: 95.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "Documents Processed Daily"
+        current_value: 450.0
+        target_value: 1000.0
+        unit: "docs"
+        trend: "up"
+      - metric_name: "Processing Cost per Document"
+        current_value: 0.45
+        target_value: 0.25
+        unit: "USD"
+        trend: "down"
+    budgets:
+      - category: "api_calls"
+        planned_amount: 15000.00
+        actual_amount: 12000.00
+      - category: "compute"
+        planned_amount: 20000.00
+        actual_amount: 22000.00
+      - category: "personnel"
+        planned_amount: 100000.00
+        actual_amount: 95000.00
+    risks:
+      - risk_description: "Poor accuracy on handwritten documents and non-standard formats"
+        probability: 4
+        impact: 3
+        mitigation: "Training on diverse document samples, OCR preprocessing pipeline"
+        status: "open"
+      - risk_description: "PII exposure in document processing pipeline"
+        probability: 2
+        impact: 5
+        mitigation: "Implement data masking and encryption at rest, SOC2 compliance review"
+        status: "mitigating"
+
+  - id: "proj_predict_05"
+    name: "Demand Forecasting Platform"
+    description: "Time-series forecasting for supply chain demand prediction using ensemble ML models."
+    status: "planning"
+    priority: "medium"
+    owner: "Lisa Wong"
+    start_date: "2024-10-01"
+    target_date: "2025-06-30"
+    model_used: "Prophet + NeuralProphet"
+    use_case: "Demand Forecasting"
+    department: "Supply Chain"
+    kpis:
+      - metric_name: "Forecast Accuracy (MAPE)"
+        current_value: 0.0
+        target_value: 8.0
+        unit: "%"
+        trend: "stable"
+      - metric_name: "Inventory Optimization"
+        current_value: 0.0
+        target_value: 15.0
+        unit: "% reduction"
+        trend: "stable"
+    budgets:
+      - category: "compute"
+        planned_amount: 25000.00
+        actual_amount: 5000.00
+      - category: "personnel"
+        planned_amount: 90000.00
+        actual_amount: 15000.00
+      - category: "infrastructure"
+        planned_amount: 15000.00
+        actual_amount: 0.00
+    risks:
+      - risk_description: "Insufficient historical data quality for accurate forecasting"
+        probability: 3
+        impact: 4
+        mitigation: "Data quality assessment and cleansing pipeline before model training"
+        status: "open"
+
+  - id: "proj_sentiment_06"
+    name: "Brand Sentiment Analyzer"
+    description: "NLP-based social media sentiment analysis for brand monitoring and competitive intelligence."
+    status: "production"
+    priority: "medium"
+    owner: "Rachel Torres"
+    start_date: "2024-02-01"
+    target_date: "2024-07-31"
+    model_used: "Fine-tuned RoBERTa"
+    use_case: "Sentiment Analysis"
+    department: "Marketing"
+    kpis:
+      - metric_name: "Sentiment Classification Accuracy"
+        current_value: 91.0
+        target_value: 90.0
+        unit: "%"
+        trend: "stable"
+      - metric_name: "Posts Analyzed Daily"
+        current_value: 50000.0
+        target_value: 30000.0
+        unit: "posts"
+        trend: "up"
+      - metric_name: "Alert Response Time"
+        current_value: 5.0
+        target_value: 10.0
+        unit: "minutes"
+        trend: "stable"
+    budgets:
+      - category: "compute"
+        planned_amount: 10000.00
+        actual_amount: 9000.00
+      - category: "api_calls"
+        planned_amount: 8000.00
+        actual_amount: 7500.00
+      - category: "personnel"
+        planned_amount: 60000.00
+        actual_amount: 60000.00
+    risks:
+      - risk_description: "Language model bias in sentiment classification"
+        probability: 2
+        impact: 3
+        mitigation: "Regular bias audits and diverse training data curation"
+        status: "resolved"
+
+  - id: "proj_codegen_07"
+    name: "AI Code Review Assistant"
+    description: "Automated code review system that identifies bugs, security vulnerabilities, and suggests improvements."
+    status: "development"
+    priority: "high"
+    owner: "James Miller"
+    start_date: "2024-08-15"
+    target_date: "2025-05-31"
+    model_used: "CodeLlama 34B + Custom Fine-tune"
+    use_case: "Code Review Automation"
+    department: "Engineering"
+    kpis:
+      - metric_name: "Bug Detection Rate"
+        current_value: 72.0
+        target_value: 90.0
+        unit: "%"
+        trend: "up"
+      - metric_name: "False Positive Rate"
+        current_value: 15.0
+        target_value: 5.0
+        unit: "%"
+        trend: "down"
+      - metric_name: "Review Time Reduction"
+        current_value: 35.0
+        target_value: 60.0
+        unit: "%"
+        trend: "up"
+    budgets:
+      - category: "compute"
+        planned_amount: 40000.00
+        actual_amount: 38000.00
+      - category: "api_calls"
+        planned_amount: 5000.00
+        actual_amount: 4500.00
+      - category: "personnel"
+        planned_amount: 110000.00
+        actual_amount: 110000.00
+    risks:
+      - risk_description: "Generated suggestions introducing security vulnerabilities"
+        probability: 2
+        impact: 5
+        mitigation: "Static analysis validation layer before presenting suggestions"
+        status: "open"
+      - risk_description: "Developer resistance to AI-generated code reviews"
+        probability: 3
+        impact: 2
+        mitigation: "Gradual rollout with developer feedback loops and opt-in participation"
+        status: "mitigating"
+
+  - id: "proj_legacy_08"
+    name: "Legacy NLP Classifier"
+    description: "First-generation text classification system. Being replaced by newer models."
+    status: "retired"
+    priority: "low"
+    owner: "Tom Anderson"
+    start_date: "2023-01-01"
+    target_date: "2023-12-31"
+    model_used: "BERT Base"
+    use_case: "Text Classification"
+    department: "Customer Success"
+    kpis:
+      - metric_name: "Classification Accuracy"
+        current_value: 82.0
+        target_value: 90.0
+        unit: "%"
+        trend: "down"
+    budgets:
+      - category: "compute"
+        planned_amount: 5000.00
+        actual_amount: 4800.00
+      - category: "personnel"
+        planned_amount: 30000.00
+        actual_amount: 28000.00
+    risks:
+      - risk_description: "Remaining dependencies on deprecated API"
+        probability: 2
+        impact: 2
+        mitigation: "Migration plan to new chatbot system"
+        status: "resolved"
